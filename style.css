@@ -14,6 +14,15 @@ a {
 a:hover {
     color: antiquewhite;
 }
+h1 {
+    font-size: 25px;
+
+}
+.title {
+    height: 18Px;
+    font-weight: 700;
+}
+
 /* NAVBAR PART OF THE PAGE */
 .navbar {
     display: flex;
@@ -71,25 +80,26 @@ a:hover {
 .top {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 .left {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+    align-items: center;
+
     width: 50%;
     height: 20vh;
-    padding-left: 4vw;
 }
 .right {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     width: 50%;
     height: 20vh;
-    padding-right: 2vw;
-    padding-left: 1vw;
 }
 .summary {
     display: flex;
@@ -113,6 +123,8 @@ a:hover {
     border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     outline: none;
 }
 .submit {
@@ -133,6 +145,11 @@ button {
     border: none;
     background-color: rgb(228, 127, 127);
     border-radius: 10px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgb(236, 79, 79);
 }
 
 /* TRANSCRIPT PART OF THE PAGE */
@@ -147,21 +164,30 @@ button {
     overflow: hidden;
 }
 .classes {
-    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 35%;
     background-color: gray;
-    height: 15vh;
+    height: 10vh;
+    white-space: nowrap;
+    margin-bottom: 2.5vh;
 }
+.classes h1 ,p {
+    font-size: 1vw;
+}
+.lClass {
+    padding-left: .8vw;
+}
+.rClass {
+    padding-right: .8vw;
+}
+
+/* FOOTER PART OF THE PAGE */
 .footer {
     width: 100%;
     height: 14vh;
     background-color: black;
-}
-
-h1 {
-    font-size: 25px;
-
-}
-.title {
-    height: 18Px;
-    font-weight: 700;
 }

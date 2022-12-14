@@ -27,48 +27,44 @@
 
             <div class="top">
                 <div class="left">
-                    <div class="lUpper">
+                    <div>
                         <h1 class="title">CLASS NAME</h1>
-                        <input type="text" style="width: 250px;">
+                        <input id="cn" type="text" style="width: 250px;">
                     </div>
 
-                    <div class="lLower">
+                    <div>
                         <h1 class="title">CREDIT HOURS</h1>
-                        <input type="number" style="width: 250px;">
+                        <input id="ch" type="number" style="width: 250px;">
                     </div>
                 </div>
 
                 <div class="right">
-                    <div class="lUpper">
+                    <div>
                         <h1 class="title">CLASS CODE</h1>
-                        <input type="text" style="width: 250px;">
+                        <input id="cc" type="text" style="width: 250px;">
                     </div>
                     
-                    <div class="lLower">
+                    <div>
                         <h1 class="title">LETTER GRADE</h1>
-                        <input type="text" style="width: 250px;">
+                        <input id="lg" type="text" style="width: 250px;">
                     </div>
                 </div>
             </div>
 
             <div class="summary">
-                <h1>SHORT SUMMARY</h1>
-                  <textarea class="textarea" placeholder="enter a brief summary..."></textarea>
+                <h1>SUMMARY (optional)</h1>
+                  <textarea id="summary" class="textarea" placeholder="enter a brief summary..."></textarea>
             </div>
 
             <div class="submit">
-                <button>Add Class</button>
+                <button onclick="collectInformation()">Add Class</button>
             </div>
         </div>
     </div>
 
     <!-- Transcript part of the page -->
-    <div class="transcript" id="transcript">
-        <h1 style="padding-top: 1vh; font-weight: 800; font-size: 45px;">Your Transcript</h1>
-        <div class="classes">
-
-        </div>
-    </div>
+    <h1 style="padding-top: 1vh; font-weight: 800; font-size: 45px; text-align: center;">Your Transcript</h1>
+    <div class="transcript" id="transcript"></div>
 
     <!-- Footer part of the page -->
     <div class="footer">
