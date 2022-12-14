@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+
+    <!-- Navbar part of the page -->
     <div class="navbar">
         <h1 class="logo"><span class="orange">Transcript</span>ified</h1>
         <div class="r-nav">
@@ -18,50 +20,57 @@
         </div>
     </div>
 
-    <!-- Main Page below the navbar -->
-    <div class="add-class">
-        <h1 style="padding-top: 1vh; font-size: 5vh">Add a Class</h1>
+    <!-- Add a Class part of the page-->
+    <div class="add-class" id="add-class">
+        <h1 style="padding-top: 1vh; font-weight: 800; font-size: 45px;">Add a Class</h1>
         <div class="modal">
 
             <div class="top">
                 <div class="left">
                     <div class="lUpper">
-                        <h1>CLASS NAME</h1>
+                        <h1 class="title">CLASS NAME</h1>
                         <input type="text" style="width: 250px;">
-
                     </div>
+
                     <div class="lLower">
-                        <h1>CREDIT HOURS</h1>
+                        <h1 class="title">CREDIT HOURS</h1>
                         <input type="number" style="width: 250px;">
                     </div>
                 </div>
 
                 <div class="right">
                     <div class="lUpper">
-                        <h1>CLASS CODE</h1>
+                        <h1 class="title">CLASS CODE</h1>
                         <input type="text" style="width: 250px;">
                     </div>
+                    
                     <div class="lLower">
-                        <h1>LETTER GRADE</h1>
+                        <h1 class="title">LETTER GRADE</h1>
                         <input type="text" style="width: 250px;">
                     </div>
                 </div>
             </div>
 
             <div class="summary">
-                <h1>SUMMARY</h1>
+                <h1>SHORT SUMMARY</h1>
                   <textarea class="textarea" placeholder="enter a brief summary..."></textarea>
+            </div>
+
+            <div class="submit">
+                <button>Add Class</button>
             </div>
         </div>
     </div>
 
-    <div class="transcript">
-        <h1 style="padding-top: 1vh; font-size: 5vh">Your Transcript</h1>
+    <!-- Transcript part of the page -->
+    <div class="transcript" id="transcript">
+        <h1 style="padding-top: 1vh; font-weight: 800; font-size: 45px;">Your Transcript</h1>
         <div class="classes">
 
         </div>
     </div>
 
+    <!-- Footer part of the page -->
     <div class="footer">
 
     </div>
