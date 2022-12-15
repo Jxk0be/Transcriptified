@@ -1,3 +1,22 @@
+totalQualityPoints = 0;
+totalCreditHours = 0;
+
+function modalHandler(element) {
+    const bg = document.createElement("div");
+    bg.classList.add("blackout");
+    document.body.appendChild(bg);
+
+    const modal = document.createElement("div");
+    modal.classList.add("pModal");
+    document.body.appendChild(modal);
+
+    /* When the background is clicked, we remove the modal and background */
+    bg.onclick = function() { 
+        bg.remove();
+        modal.remove();
+    }
+}
+
 function addClass(cName, cCode, cHours, lGrade, summ) {
     const gradingTable = {
         'A': 4,
@@ -14,9 +33,13 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
         'F': 0
     }
 
-    /* Converting all user input to uppercase and then calculating quality points for the specific course */
+    /* Converting all user input to uppercase and then calculating quality points for the specific course, then adding
+       it to the running total of quality points for this individual user.
+    */
     lGrade.value = lGrade.value.toUpperCase()
     qualityPoints = Number(cHours.value) * Number(gradingTable[lGrade.value])
+    totalQualityPoints += qualityPoints;
+    totalCreditHours += Number(cHours.value);
 
     /* The following section of code is creating the course UI for the transcript section of the page */
     const transcript = document.querySelector("#transcript");
@@ -30,21 +53,30 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     lClass.classList.add("lClass");
     newClass.appendChild(lClass);
 
+    const rSide = document.createElement("div");
+    rSide.classList.add("neater");
+    newClass.appendChild(rSide);
+
     const qPoints = document.createElement("h1");
-    qPoints.innerText = `Qaulity Points: ${qualityPoints}`;
-    newClass.appendChild(qPoints);
+    qPoints.innerText = `Grade: ${lGrade.value}`;
+    rSide.appendChild(qPoints);
 
     const rClass = document.createElement("h1");
     rClass.innerText = "Summary";
     rClass.classList.add("rClass");
-    newClass.appendChild(rClass);
-
+    rClass.classList.add("sumModal")
+    rClass.onclick = function() { modalHandler(newClass) }
+    rSide.appendChild(rClass);
+    
     /* Resetting the input fields assuming a valid response has been made by the user */
     cName.value = "";
     cCode.value = "";
     cHours.value = "";
     lGrade.value = "";
     summ.value = "";
+
+    console.log("total qp's: " + totalQualityPoints);
+    console.log("total ch's: " + totalCreditHours);
 }
 
 
