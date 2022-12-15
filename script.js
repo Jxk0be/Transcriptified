@@ -1,7 +1,7 @@
 totalQualityPoints = 0;
 totalCreditHours = 0;
 
-function modalHandler(element) {
+function modalHandler(element, name, code, hours, grade, summary) {
     const bg = document.createElement("div");
     bg.classList.add("blackout");
     document.body.appendChild(bg);
@@ -9,6 +9,16 @@ function modalHandler(element) {
     const modal = document.createElement("div");
     modal.classList.add("pModal");
     document.body.appendChild(modal);
+
+    const title = document.createElement("h1");
+    title.innerText = name + ": (" + code + ")";
+    title.classList.add("center");
+    modal.appendChild(title);
+
+    const summ = document.createElement("p");
+    summ.innerText = summary;
+    summ.classList.add("paragraph");
+    modal.appendChild(summ);
 
     /* When the background is clicked, we remove the modal and background */
     bg.onclick = function() { 
@@ -32,6 +42,11 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
         'D-': 0.7,
         'F': 0
     }
+    const name = cName.value;
+    const code = cCode.value;
+    const hours = cHours.value;
+    const grade = lGrade.value;
+    const summary = summ.value;
 
     /* Converting all user input to uppercase and then calculating quality points for the specific course, then adding
        it to the running total of quality points for this individual user.
@@ -65,7 +80,7 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     rClass.innerText = "Summary";
     rClass.classList.add("rClass");
     rClass.classList.add("sumModal")
-    rClass.onclick = function() { modalHandler(newClass) }
+    rClass.onclick = function() { modalHandler(newClass, name, code, hours, grade, summary) }
     rSide.appendChild(rClass);
     
     /* Resetting the input fields assuming a valid response has been made by the user */

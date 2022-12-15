@@ -22,6 +22,12 @@ h1 {
     height: 18Px;
     font-weight: 700;
 }
+.paragraph {
+    font-size: 25px;
+}
+.center {
+    text-align: center;
+}
 
 /* NAVBAR PART OF THE PAGE */
 .navbar {
@@ -202,10 +208,11 @@ button:hover {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
+    min-width: 400px;
     width: 30%;
     height: 20vh;
     background-color: rgb(228, 75, 96);
+    padding: 1vw;
     z-index: 10;
 }
 .blackout {
