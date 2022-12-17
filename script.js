@@ -1,7 +1,12 @@
-totalQualityPoints = 0;
-totalCreditHours = 0;
+let totalQualityPoints = 0;
+let totalCreditHours = 0;
 
-function modalHandler(element, name, code, hours, grade, summary) {
+// This will keep track of all the courses added and will update the order
+// LOOK AT THE CHANNEL FOR STACKOVERFLOW FIX
+
+let allClasses = [];
+
+function modalHandler(name, code, hours, grade, summary) {
     const bg = document.createElement("div");
     bg.classList.add("blackout");
     document.body.appendChild(bg);
@@ -42,19 +47,18 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
         'D-': 0.7,
         'F': 0
     }
-    const name = cName.value;
-    const code = cCode.value;
-    const hours = cHours.value;
-    const grade = lGrade.value;
-    const summary = summ.value;
 
-    /* Converting all user input to uppercase and then calculating quality points for the specific course, then adding
-       it to the running total of quality points for this individual user.
-    */
-    lGrade.value = lGrade.value.toUpperCase()
-    qualityPoints = Number(cHours.value) * Number(gradingTable[lGrade.value])
+    /* Storing values of elements while we have access to them */
+    const name = cName;
+    const code = cCode;
+    const hours = cHours;
+    const grade = lGrade;
+    const summary = summ;
+
+    /* Calculating quality points for the specific course, then adding it to the running total of quality points for this individual user. */
+    qualityPoints = Number(cHours) * Number(gradingTable[lGrade])
     totalQualityPoints += qualityPoints;
-    totalCreditHours += Number(cHours.value);
+    totalCreditHours += Number(cHours);
 
     /* The following section of code is creating the course UI for the transcript section of the page */
     const transcript = document.querySelector("#transcript");
@@ -64,7 +68,7 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     transcript.appendChild(newClass);
 
     const lClass = document.createElement("h1");
-    lClass.innerText = `${cCode.value}: ${cName.value}`;
+    lClass.innerText = `${cCode}: ${cName}`;
     lClass.classList.add("lClass");
     newClass.appendChild(lClass);
 
@@ -73,27 +77,39 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     newClass.appendChild(rSide);
 
     const qPoints = document.createElement("h1");
-    qPoints.innerText = `Grade: ${lGrade.value}`;
+    qPoints.innerText = `Grade: ${lGrade}`;
     rSide.appendChild(qPoints);
 
     const rClass = document.createElement("h1");
     rClass.innerText = "Summary";
     rClass.classList.add("rClass");
     rClass.classList.add("sumModal")
-    rClass.onclick = function() { modalHandler(newClass, name, code, hours, grade, summary) }
+    rClass.onclick = function() { modalHandler(name, code, hours, grade, summary) }
     rSide.appendChild(rClass);
     
     /* Resetting the input fields assuming a valid response has been made by the user */
-    cName.value = "";
-    cCode.value = "";
-    cHours.value = "";
-    lGrade.value = "";
-    summ.value = "";
+    cName = "";
+    cCode = "";
+    cHours = "";
+    lGrade = "";
+    summ = "";
 
     console.log("total qp's: " + totalQualityPoints);
     console.log("total ch's: " + totalCreditHours);
 }
 
+window.onload = function () {
+    /* Everytime we open/reload the page, we need to load localStorage data into an array */
+    const tempArr = JSON.parse(localStorage.getItem(localStorage.key(0)));
+    const size = tempArr.length;
+
+    allClasses = tempArr;
+
+    console.log(allClasses.length);
+    for (let i = 0; i < allClasses.length; ++i) {
+        addClass(allClasses[i].className, allClasses[i].classCode, allClasses[i].credHours, allClasses[i].letterGrade, allClasses[i].summary);
+    }
+}
 
 function collectInformation() {
     const validGrades = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-","F"];
@@ -105,15 +121,29 @@ function collectInformation() {
     const lGrade = document.querySelector("#lg");
     const summ = document.querySelector("#summary");
 
+    lGrade.value = lGrade.value.toUpperCase()
+
     /* Error-checking all mandatory fields, if not filled out, we return and don't reset values */
     if (cName.value === "" || cCode.value === "" || cHours.value == "" || lGrade.value === "") {
         console.log("Fill out all mandatory fields please");
         return;
     }
 
-    if (lGrade.value.length > 2 || !validGrades.includes(lGrade.value.toUpperCase())) {
+    if (lGrade.value.length > 2 || !validGrades.includes(lGrade.value)) {
         console.log("You need to give a valid letter grade. i.e. A, B+, C-");
         return;
     }
-    addClass(cName, cCode, cHours, lGrade, summ);
+
+    let newObject = {
+        'className': cName.value,
+        'classCode': cCode.value,
+        'credHours': Number(cHours.value),
+        'letterGrade': lGrade.value,
+        'summary': summ.value
+    }
+
+    allClasses.push(newObject);
+    localStorage.setItem('courses', JSON.stringify(allClasses));
+
+    addClass(cName.value, cCode.value, cHours.value, lGrade.value, summ.value);
 }
