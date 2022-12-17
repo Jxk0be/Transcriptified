@@ -85,18 +85,18 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     rClass.onclick = function() { modalHandler(name, code, hours, grade, summary) }
     rSide.appendChild(rClass);
 
-    console.log("total qp's: " + totalQualityPoints);
-    console.log("total ch's: " + totalCreditHours);
+    const pGPA = document.querySelector('#gpa');
+    pGPA.innerText = `GPA: ${totalQualityPoints / totalCreditHours}`
 }
 
 window.onload = function () {
-    /* Everytime we open/reload the page, we need to load localStorage data into an array */
-    const tempArr = JSON.parse(localStorage.getItem(localStorage.key(0)));
-    const size = tempArr.length;
+    /* Everytime we open/reload the page, we want to grab existing courses, credit hours, and quality points */
+    const tempArr = JSON.parse(localStorage.getItem('courses'));
 
+    /* Everything below is logic updating the UI to it's most recent form */
+    const size = tempArr.length;
     allClasses = tempArr;
 
-    console.log(allClasses.length);
     for (let i = 0; i < allClasses.length; ++i) {
         addClass(allClasses[i].className, allClasses[i].classCode, allClasses[i].credHours, allClasses[i].letterGrade, allClasses[i].summary);
     }
