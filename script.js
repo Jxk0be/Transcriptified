@@ -2,8 +2,6 @@ let totalQualityPoints = 0;
 let totalCreditHours = 0;
 
 // This will keep track of all the courses added and will update the order
-// LOOK AT THE CHANNEL FOR STACKOVERFLOW FIX
-
 let allClasses = [];
 
 function modalHandler(name, code, hours, grade, summary) {
@@ -86,13 +84,6 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     rClass.classList.add("sumModal")
     rClass.onclick = function() { modalHandler(name, code, hours, grade, summary) }
     rSide.appendChild(rClass);
-    
-    /* Resetting the input fields assuming a valid response has been made by the user */
-    cName = "";
-    cCode = "";
-    cHours = "";
-    lGrade = "";
-    summ = "";
 
     console.log("total qp's: " + totalQualityPoints);
     console.log("total ch's: " + totalCreditHours);
@@ -146,4 +137,11 @@ function collectInformation() {
     localStorage.setItem('courses', JSON.stringify(allClasses));
 
     addClass(cName.value, cCode.value, cHours.value, lGrade.value, summ.value);
+
+    /* Resetting the input fields assuming a valid response has been made by the user */
+    cName.value = "";
+    cCode.value = "";
+    cHours.value = "";
+    lGrade.value = "";
+    summ.value = "";
 }
