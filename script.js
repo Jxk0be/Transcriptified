@@ -46,17 +46,17 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
         'F': 0
     }
 
+    /* Calculating quality points for the specific course, then adding it to the running total of quality points for this individual user. */
+    qualityPoints = Number(cHours) * Number(gradingTable[lGrade])
+    totalQualityPoints += qualityPoints;
+    totalCreditHours += Number(cHours);
+
     /* Storing values of elements while we have access to them */
     const name = cName;
     const code = cCode;
     const hours = cHours;
     const grade = lGrade;
     const summary = summ;
-
-    /* Calculating quality points for the specific course, then adding it to the running total of quality points for this individual user. */
-    qualityPoints = Number(cHours) * Number(gradingTable[lGrade])
-    totalQualityPoints += qualityPoints;
-    totalCreditHours += Number(cHours);
 
     /* The following section of code is creating the course UI for the transcript section of the page */
     const transcript = document.querySelector("#transcript");
@@ -81,8 +81,8 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     const rClass = document.createElement("h1");
     rClass.innerText = "Summary";
     rClass.classList.add("rClass");
-    rClass.classList.add("sumModal")
-    rClass.onclick = function() { modalHandler(name, code, hours, grade, summary) }
+    rClass.classList.add("sumModal");
+    rClass.onclick = function() { modalHandler(name, code, hours, grade, summary) };
     rSide.appendChild(rClass);
 
     const pGPA = document.querySelector('#gpa');

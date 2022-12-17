@@ -142,7 +142,7 @@ h1 {
     align-items: center;
     padding-top: 4vh;
 }
-button {
+.btn {
     height: 4vh;
     width: 10vw;
 
@@ -156,7 +156,7 @@ button {
     cursor: pointer;
     user-select: none;
 }
-button:hover {
+.btn:hover {
     background-color: rgb(236, 79, 79);
 }
 
@@ -172,10 +172,12 @@ button:hover {
 }
 .classes {
     display: flex;
+    position: relative;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
+    min-width: 500px;
     width: 35%;
     background-color: gray;
     height: 10vh;
@@ -184,13 +186,13 @@ button:hover {
     border-radius: 10px;
 }
 .classes h1 ,p {
-    font-size: 1vw;
+    font-size: 95%;
 }
 .lClass {
-    margin-left: .8vw;
+    margin-left: 1vw;
 }
 .rClass {
-    margin-right: .8vw;
+    margin-right: 1vw;
 }
 .sumModal {
     text-decoration: underline;
@@ -226,7 +228,13 @@ button:hover {
     background-color: rgba(31, 30, 30, 0.432);
     z-index: 5;
 }
-
+.exit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
+    width: 20px;
+}
 /* FOOTER PART OF THE PAGE */
 .footer {
     width: 100%;
