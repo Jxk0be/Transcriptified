@@ -1,6 +1,33 @@
 /* Array to hold all the user's courses on their transcript */
 let allClasses = [];
 
+/* Function to be called for any error messages the user needs to be notified about */
+function errorHandler(message) {
+    const bg = document.createElement("div");
+    bg.classList.add("blackout");
+    document.body.appendChild(bg);
+
+    const modal = document.createElement("div");
+    modal.classList.add("errorModal");
+    document.body.appendChild(modal);
+
+    const title = document.createElement("h1");
+    title.innerText = "User Error";
+    title.classList.add("errorTitle");
+    modal.appendChild(title);
+
+    const summ = document.createElement("p");
+    summ.innerText = message;
+    summ.classList.add("error");
+    modal.appendChild(summ);
+
+    /* When the background is clicked, we remove the modal and background */
+    bg.onclick = function() { 
+        bg.remove();
+        modal.remove();
+    }
+}
+
 function modalHandler(name, code, hours, grade, summary) {
     const bg = document.createElement("div");
     bg.classList.add("blackout");
@@ -148,12 +175,12 @@ function collectInformation() {
 
     /* Error-checking all mandatory fields, if not filled out, we return and don't reset values */
     if (cName.value === "" || cCode.value === "" || cHours.value == "" || lGrade.value === "") {
-        console.log("Fill out all mandatory fields please");
+        errorHandler("Fill out all mandatory fields please");
         return;
     }
 
     if (lGrade.value.length > 2 || !validGrades.includes(lGrade.value)) {
-        console.log("You need to give a valid letter grade. i.e. A, B+, C-");
+       errorHandler("You need to give a valid letter grade. i.e. A, B+, C-");
         return;
     }
 
