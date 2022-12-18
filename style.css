@@ -57,7 +57,8 @@ h1 {
     padding-right: 2vw;
     color: white;
     white-space: nowrap;
-    max-width: 360px;
+    max-width: 500px;
+    width: 400px;
 }
 .orange {
     color: orange;
@@ -228,7 +229,7 @@ h1 {
     background-color: rgba(31, 30, 30, 0.432);
     z-index: 5;
 }
-.exit {
+.remove {
     position: absolute;
     top: 0;
     right: 0;

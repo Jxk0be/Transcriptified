@@ -1,7 +1,4 @@
-let totalQualityPoints = 0;
-let totalCreditHours = 0;
-
-// This will keep track of all the courses added and will update the order
+/* Array to hold all the user's courses on their transcript */
 let allClasses = [];
 
 function modalHandler(name, code, hours, grade, summary) {
@@ -30,27 +27,38 @@ function modalHandler(name, code, hours, grade, summary) {
     }
 }
 
-function addClass(cName, cCode, cHours, lGrade, summ) {
-    const gradingTable = {
-        'A': 4,
-        'A-': 3.7,
-        'B+': 3.3,
-        'B': 3,
-        'B-': 2.7,
-        'C+': 2.3,
-        'C': 2,
-        'C-': 1.7,
-        'D+': 1.3,
-        'D': 1,
-        'D-': 0.7,
-        'F': 0
+/* Function is called everytime we add or remove a class from the transcript
+   It calculates the GPA each time the list is updated.
+*/
+function updateGPA(allClasses) {
+    let tQP = 0;
+    let tCH = 0;
+
+    for (let i = 0; i < allClasses.length; ++i) {
+        tQP += allClasses[i].qPoints;
+        tCH += allClasses[i].credHours;
     }
 
-    /* Calculating quality points for the specific course, then adding it to the running total of quality points for this individual user. */
-    qualityPoints = Number(cHours) * Number(gradingTable[lGrade])
-    totalQualityPoints += qualityPoints;
-    totalCreditHours += Number(cHours);
+    const pGPA = document.querySelector('#gpa');
+    const GPA = tQP / tCH;
 
+    pGPA.innerText = `GPA: ${GPA.toFixed(2)}`
+}
+
+/* The most straight-forward way to remove a class and then update the GPA */
+function removeClass(curCourse, allClasses, name) {
+    curCourse.remove();
+
+    for (let i = 0; i < allClasses.length; ++i) {
+        if (allClasses[i].className === name) allClasses.splice(i, 1);
+    }
+
+    localStorage.setItem('courses', JSON.stringify(allClasses));
+    updateGPA(allClasses);
+}
+
+/* This creates all the UI for the new course and updates the GPA */
+function addClass(cName, cCode, cHours, lGrade, summ) {
     /* Storing values of elements while we have access to them */
     const name = cName;
     const code = cCode;
@@ -85,10 +93,19 @@ function addClass(cName, cCode, cHours, lGrade, summ) {
     rClass.onclick = function() { modalHandler(name, code, hours, grade, summary) };
     rSide.appendChild(rClass);
 
-    const pGPA = document.querySelector('#gpa');
-    pGPA.innerText = `GPA: ${totalQualityPoints / totalCreditHours}`
+    const remove = document.createElement("h1");
+    remove.innerHTML = `<i class="fas fa-times fa-lg"></i>`;
+    remove.classList.add("remove");
+    remove.onclick = function() { removeClass(newClass, allClasses, name) }; 
+    newClass.appendChild(remove);
+
+    /* Finally we update the GPA to its new value */
+    updateGPA(allClasses);
 }
 
+/* Function is ran at the load time to rebuild the user's transcript (so long as they are using
+   the same browser since we are using localStorage) 
+*/
 window.onload = function () {
     /* Everytime we open/reload the page, we want to grab existing courses, credit hours, and quality points */
     const tempArr = JSON.parse(localStorage.getItem('courses'));
@@ -102,8 +119,23 @@ window.onload = function () {
     }
 }
 
+/* Initial function call to parse all data from the input fields on the UI */
 function collectInformation() {
     const validGrades = ["A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-","F"];
+    const gradingTable = {
+        'A': 4,
+        'A-': 3.7,
+        'B+': 3.3,
+        'B': 3,
+        'B-': 2.7,
+        'C+': 2.3,
+        'C': 2,
+        'C-': 1.7,
+        'D+': 1.3,
+        'D': 1,
+        'D-': 0.7,
+        'F': 0
+    }
 
     /* Grabbing all input fields from the Add Class modal */
     const cName = document.querySelector("#cn");
@@ -125,17 +157,24 @@ function collectInformation() {
         return;
     }
 
+    /* Creating an object for every new course added. This makes it easier to mutate these values
+       and pass by reference in future functions. 
+    */
     let newObject = {
         'className': cName.value,
         'classCode': cCode.value,
         'credHours': Number(cHours.value),
         'letterGrade': lGrade.value,
-        'summary': summ.value
+        'summary': summ.value,
+        'qPoints': 0
     }
 
+    /* Calculating quality points */
+    newObject.qPoints = Number(cHours.value) * Number(gradingTable[lGrade.value])
+
+    /* Adding new course to list of all courses, then updating localStorage and calling a function to build the UI */
     allClasses.push(newObject);
     localStorage.setItem('courses', JSON.stringify(allClasses));
-
     addClass(cName.value, cCode.value, cHours.value, lGrade.value, summ.value);
 
     /* Resetting the input fields assuming a valid response has been made by the user */
