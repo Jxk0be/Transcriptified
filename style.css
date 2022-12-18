@@ -6,19 +6,20 @@ body {
     padding: 0;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: rgb(0,121,145);
-    background: linear-gradient(90deg, rgba(0,121,145,1) 0%, rgba(13,163,193,1) 100%);
-    color: white;
+    background: rgb(44,44,44);
+    background: linear-gradient(90deg, rgba(44,44,44,1) 0%, rgba(41,40,40,1) 100%);
+    
+    color: #EDEDED;
 /* 
     background: rgb(1,22,39);
     background: linear-gradient(90deg, rgba(1,22,39,1) 0%, rgba(5,62,108,1) 100%); */
 }
 a {
     text-decoration: none;
-    color: white;
+    color: #EDEDED;
 }
 a:hover {
-    color: #F71735;
+    color: #DA0037;
 }
 h1 {
     font-size: 25px;
@@ -47,12 +48,12 @@ input {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 8vh;
+    height: 6vh;
     min-height: 65px;
     /* background-color: #011627; */
 
-    background: #011627;
-    background: linear-gradient(90deg, rgba(1,22,39,1) 0%, rgba(5,62,108,1) 100%);
+    background: rgb(23,23,23);
+    background: linear-gradient(90deg, rgba(23,23,23,1) 0%, rgba(24,23,23,1) 100%);
 
     position: fixed;
     overflow: hidden;
@@ -60,8 +61,8 @@ input {
     z-index: 20;
 }
 .logo {
-    color: white;
-    padding-left: 2vw;
+    color: #EDEDED;
+    margin-left: 2vw;
 }
 .r-nav {
     display: flex;
@@ -69,7 +70,7 @@ input {
     justify-content: space-around;
     align-items: center;
     padding-right: 2vw;
-    color: white;
+    color: #EDEDED;
     white-space: nowrap;
     max-width: 600px;
     width: 450px;
@@ -80,15 +81,15 @@ input {
     transition-duration: 0.2s;
 }
 .nLinks:hover {
-    color: #F71735;
+    color: #DA0037;
 }
 .orange {
-    color: #F71735;
+    color: #DA0037;
 }
 
 /* ADD CLASS PART OF THE PAGE */
 .add-class {
-    padding-top: 8vh;
+    padding-top: 6vh;
     width: 100%;
     height: 65vh;
 
@@ -97,7 +98,8 @@ input {
     flex-direction: column;
 }
 .modal {
-    background-color: #007991;
+    background: rgb(23,23,23);
+    background: linear-gradient(90deg, rgba(23,23,23,1) 0%, rgba(24,23,23,1) 100%);
     height: 50vh;
     width: 40%;
     min-width: 600px;
@@ -149,7 +151,7 @@ input {
     font-size: 15pt;
     resize: none;
     border: none;
-    background-color: white;
+    background-color: #EDEDED;
     border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
@@ -173,21 +175,24 @@ input {
 .btn {
     height: 4vh;
     width: 10vw;
-    color: white;
+    color: #EDEDED;
     font-size: 105%;
     min-height: 40px;
     min-width: 100px;
     outline: none;
     border: none;
 
-    background-color: #F71735;
+    background: rgb(218,0,55);
+    background: linear-gradient(90deg, rgba(218,0,55,1) 0%, rgba(237,9,67,1) 100%);
+
     border-radius: 10px;
-    transition-duration: 0.2s;
+    transition: all 0.2s ease-out;
     cursor: pointer;
     user-select: none;
 }
 .btn:hover {
-    background-color: #b11025;
+    background: rgb(218,0,55);
+    background: linear-gradient(90deg, rgb(162, 9, 47) 0%, rgb(205, 5, 55) 100%);
 }
 
 /* TRANSCRIPT PART OF THE PAGE */
@@ -210,16 +215,18 @@ input {
     min-width: 500px;
     width: 35%;
 
-    /* background: rgb(247,23,53);
-    background: linear-gradient(90deg, rgba(247,23,53,1) 0%, rgba(199,28,51,1) 100%); */
-
-    background: #011627;
-    background: linear-gradient(90deg, rgb(7, 63, 109) 0%, rgba(5,62,108,1) 100%);
+    background: rgb(218,0,55);
+    background: linear-gradient(90deg, rgba(218,0,55,1) 0%, rgba(237,9,67,1) 100%);
     
     height: 10vh;
     white-space: nowrap;
     margin-bottom: 2.5vh;
     border-radius: 10px;
+    transition-duration: 0.2s;
+}
+.classes:hover {
+    width: 35.5%;
+    height: 10.3vh;
 }
 .classes h1 ,p {
     font-size: 95%;
@@ -234,6 +241,10 @@ input {
     text-decoration: underline;
     cursor: pointer;
     user-select: none;
+    transition-duration: 0.2s;
+}
+.sumModal:hover {
+    color: #171717;
 }
 .neater {
     display: flex;
@@ -249,10 +260,14 @@ input {
     min-width: 400px;
     width: 30%;
     min-height: 10vh;
-    background-color: white;
-    color: #011627;
+    background-color: #171717;
+    border: #DA0037 1px solid;
+    color: #EDEDED;
     z-index: 10;
     border-radius: 13px;
+    transition-duration: 0.2s;
+    padding-left: 1vh;
+    padding-right: 1vh;
 }
 .paragraph {
     font-size: 25px;
@@ -263,7 +278,7 @@ input {
 .center {
     text-align: center;
     text-decoration: underline;
-    color: #F71735;
+    color: #DA0037;
     font-weight: 700;
     padding-top: 1vh;
 }
@@ -273,7 +288,7 @@ input {
     font-weight: 500;
     padding-bottom: 1vh;
     text-align: center;
-    color: white;
+    color: #EDEDED;
 }
 .errorModal {
     position: fixed;
@@ -283,15 +298,15 @@ input {
     min-width: 400px;
     width: 30%;
     min-height: 10vh;
-    background-color: #011627;
-    color: #011627;
+    background-color: #DA0037;
+    color: #DA0037;
     z-index: 10;
     border-radius: 13px;
 }
 .errorTitle {
     text-align: center;
     text-decoration: underline;
-    color: #F71735;
+    color: #EDEDED;
     font-weight: 700;
     padding-top: 1vh;
 }
@@ -305,6 +320,7 @@ input {
     height: 100vh;
     background-color: rgba(31, 30, 30, 0.432);
     z-index: 5;
+    cursor: pointer;
 }
 .remove {
     position: absolute;
@@ -312,13 +328,20 @@ input {
     right: 0;
     margin-right: 10px;
     width: 20px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+.remove:hover {
+    font-size: 102%;
+    color: #171717;
 }
 
 /* FOOTER PART OF THE PAGE */
 .footer {
     width: 100%;
     height: 14vh;
-    background-color: #011627;
+    background: rgb(23,23,23);
+    background: linear-gradient(90deg, rgba(23,23,23,1) 0%, rgba(24,23,23,1) 100%);
     display: flex;
     justify-content: center;
     align-items: center;
