@@ -22,18 +22,22 @@ a:hover {
 }
 h1 {
     font-size: 25px;
-
 }
+input {
+    border-radius: 70px;
+    outline: none;
+    width: 8vw;
+    height: 3vh;
+    font-size: 18px;
+    font-weight: 600;
+    text-indent: 10px;
+}
+
 .title {
     height: 18Px;
     font-weight: 700;
 }
-.paragraph {
-    font-size: 25px;
-}
-.center {
-    text-align: center;
-}
+
 
 /* NAVBAR PART OF THE PAGE */
 .navbar {
@@ -47,7 +51,7 @@ h1 {
     min-height: 65px;
     /* background-color: #011627; */
 
-    background: rgb(1,22,39);
+    background: #011627;
     background: linear-gradient(90deg, rgba(1,22,39,1) 0%, rgba(5,62,108,1) 100%);
 
     position: fixed;
@@ -145,13 +149,18 @@ h1 {
     font-size: 15pt;
     resize: none;
     border: none;
-    background-color: rgb(252, 248, 242);
+    background-color: white;
     border-radius: 10px;
     padding-left: 20px;
     padding-right: 20px;
     padding-top: 15px;
     padding-bottom: 15px;
     outline: none;
+    color: #011627;
+}
+::placeholder {
+    color: #0116278e;
+    font-size: 15pt;
 }
 .submit {
     width: 100%;
@@ -237,10 +246,23 @@ h1 {
     transform: translate(-50%, -50%);
     min-width: 400px;
     width: 30%;
-    height: 20vh;
-    background-color: rgb(228, 75, 96);
+    min-height: 10vh;
+    background-color: white;
+    color: #011627;
     padding: 1vw;
     z-index: 10;
+    border-radius: 13px;
+}
+.paragraph {
+    font-size: 25px;
+    margin: 2vh;
+    font-weight: 500;
+}
+.center {
+    text-align: center;
+    text-decoration: underline;
+    color: red;
+    font-weight: 700;
 }
 .blackout {
     position: fixed;
