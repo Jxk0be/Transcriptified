@@ -8,7 +8,7 @@ Jake Shoffner ([Jxk0be](https://github.com/Jxk0be))
 An alternative transcript experience that enables the user to add notes to their courses and has more flare than typical school transcripts.
 
 ## How to Access
-To access the web app, it is [hosted here](https://lively-blancmange-a795ef.netlify.app). 
+To access the web app, it is [hosted here](https://transcriptified.netlify.app). 
 
 This uses local storage instead of a database, so **make sure to not clear browser data** or you will lose your previous input.
 
